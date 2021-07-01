@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { promisify } from "util";
-import User from "./../models/userModel";
-import AppError from "./appError";
-import catchAsync from "./catchAsync";
+import User from "../models/userModel";
+import AppError from "../utils/appError";
+import catchAsync from "../utils/catchAsync";
 
 export default catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
@@ -40,12 +40,6 @@ export default catchAsync(
 			}
 	
 			const currentUser = await User.findById(decoded.id);
-			if (!currentUser) {
-				return new AppError(
-						"The user belonging to this token does no longer exist.",
-						401
-					);
-			}
 			// GRANT ACCESS TO PROTECTED ROUTE
 			// @ts-ignore
 			req.user = currentUser;

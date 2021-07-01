@@ -11,7 +11,7 @@ import { graphqlHTTP } from "express-graphql";
 import AppError from "./utils/appError";
 import graphqlSchema from "./graphql/schema"
 import resolver from "./graphql/resolver"
-import isAuth from "./utils/isAuth"
+import isAuth from "./authorization/protect"
 
 
 // Start express app
