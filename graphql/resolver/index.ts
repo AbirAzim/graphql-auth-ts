@@ -4,6 +4,7 @@ import getAllUsers from "./getAllUsers"
 import forgetPassword from "./forgetPassword"
 import resetPassword from "./resetPassword"
 import removeUser from "./removeUser"
+import updatePassword from "./updatePassword"
 
 export default {
   signUp,
@@ -12,4 +13,5 @@ export default {
   forgetPassword,
   resetPassword,
   removeUser,
+  updatePassword,
 }

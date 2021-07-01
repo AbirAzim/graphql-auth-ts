@@ -35,6 +35,7 @@ export default buildSchema(`
       forgetPassword(email: String): String
       resetPassword(token: String, newPassword: String): String
       removeUser(userId: String): User
+      updatePassword(currentPassword: String, newPassword: String): String
     }
 
     schema {
