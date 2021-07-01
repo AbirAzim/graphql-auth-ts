@@ -34,6 +34,7 @@ export default buildSchema(`
       signUp(userSignup: UserSignup): User
       forgetPassword(email: String): String
       resetPassword(token: String, newPassword: String): String
+      removeUser(userId: String): User
     }
 
     schema {
