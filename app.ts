@@ -6,7 +6,7 @@ import rateLimit from "express-rate-limit";
 import morgan from "morgan";
 import { graphqlHTTP } from "express-graphql";
 
-import globalErrorHandler from "./controllers/errorController";
+// import globalErrorHandler from "./controllers/errorController";
 // import userRouter from "./routes/userRoutes";
 import AppError from "./utils/appError";
 import graphqlSchema from "./graphql/schema"
@@ -33,7 +33,7 @@ const limiter = rateLimit({
 	windowMs: 60 * 60 * 1000,
 	message: "Too many requests from this IP, please try again in an hour!",
 });
-app.use("/api", limiter);
+app.use("/graphql", limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: "10kb" }));
@@ -59,6 +59,6 @@ app.all("*", (req: Request, res: Response, next: NextFunction) => {
 	next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-app.use(globalErrorHandler);
+// app.use(globalErrorHandler);
 
 module.exports = app;
