@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 import { model, Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 import validator from "validator";
@@ -27,6 +28,8 @@ const userSchema = new Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
+	passwordResetToken: String,
+  passwordResetTokenExpiresIn: Date,
 });
 
 userSchema.pre<IUser>("save", async function (next) {
@@ -40,6 +43,19 @@ userSchema.methods.isPasswordCorrect = async function (
   userPassword
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  const passwordToken = crypto.randomBytes(32).toString('hex'); // send it to the user
+	// @ts-ignore
+  const passwordResetToken = crypto
+    .createHash('sha256')
+    .update(passwordToken)
+    .digest('hex'); // encrypt for database
+	// @ts-ignore
+  const passwordResetTokenExpiresIn = Date.now() + 10 * 60 * 1000;
+
+  return { passwordToken, passwordResetToken, passwordResetTokenExpiresIn };
 };
 
 const User = model("User", userSchema);
