@@ -28,6 +28,11 @@ const userSchema = new Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
+	provider: { 
+		type: String,
+		enum: ['google', 'facebook', 'email'], 
+		default: 'email'
+	},
 	passwordResetToken: String,
   passwordResetTokenExpiresIn: Date,
 });
