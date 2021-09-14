@@ -64,7 +64,7 @@ TODO
 
 ​
 
-- **Asief Mahir** - _Initial work_ - [Badhon Khan](https://github.com/AbirAzim)
+- **Badhon Khan** - _Initial work_ - [Badhon Khan](https://github.com/AbirAzim)
   ​
 
 ## Acknowledgments
